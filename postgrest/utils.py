@@ -1,3 +1,4 @@
+import json
 from __future__ import annotations
 
 from typing import Any
@@ -12,7 +13,7 @@ class SyncClient(BaseClient):
 
 
 def sanitize_param(param: Any) -> str:
-    param_str = str(param)
+    param_str = json.dumps(param)
     reserved_chars = ".,:()"
     if any(char in param_str for char in reserved_chars):
         return f'"{param_str}"'
