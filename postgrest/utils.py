@@ -1,10 +1,12 @@
-import json
 from __future__ import annotations
 
 from typing import Any
 
 from httpx import AsyncClient  # noqa: F401
 from httpx import Client as BaseClient  # noqa: F401
+
+import json
+
 
 
 class SyncClient(BaseClient):
