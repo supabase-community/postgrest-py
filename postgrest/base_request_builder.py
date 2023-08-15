@@ -18,14 +18,7 @@ from typing import (
 
 from httpx import Headers, QueryParams
 from httpx import Response as RequestResponse
-from pydantic import BaseModel
-
-try:
-    # >= 2.0.0
-    from pydantic import field_validator
-except ImportError:
-    # < 2.0.0
-    from pydantic import validator as field_validator
+from pydantic import BaseModel, validator
 
 from .types import CountMethod, Filters, RequestMethod, ReturnMethod
 from .utils import AsyncClient, SyncClient, sanitize_param
@@ -120,7 +113,7 @@ class APIResponse(BaseModel):
     count: Optional[int] = None
     """The number of rows returned."""
 
-    @field_validator("data")
+    @validator("data")
     @classmethod
     def raise_when_api_error(cls: Type[APIResponse], value: Any) -> Any:
         if isinstance(value, dict) and value.get("message"):
