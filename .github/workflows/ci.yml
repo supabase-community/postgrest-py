@@ -29,7 +29,7 @@ jobs:
     - name: Run Tests
       run: make run_tests
     - name: Upload Coverage
-      uses: codecov/codecov-action@4.1.1
+      uses: codecov/codecov-action@v4.1.0
 
   publish:
     needs: test
