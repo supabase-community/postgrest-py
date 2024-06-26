@@ -53,6 +53,7 @@ class AsyncPostgrestClient(BasePostgrestClient):
             timeout=timeout,
             verify=verify,
             follow_redirects=True,
+            http2=True,
         )
 
     async def __aenter__(self) -> AsyncPostgrestClient:
