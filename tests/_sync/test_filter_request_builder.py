@@ -190,13 +190,13 @@ def test_overlaps_with_timestamp_range(filter_request_builder):
 def test_like(filter_request_builder):
     builder = filter_request_builder.like("x", "%a%")
 
-    assert str(builder.params) == "x=like.%a%"
+    assert str(builder.params) == "x=like.%2Aa%2A"
 
 
 def test_ilike(filter_request_builder):
     builder = filter_request_builder.ilike("x", "%a%")
 
-    assert str(builder.params) == "x=ilike.%a%"
+    assert str(builder.params) == "x=ilike.%2Aa%2A"
 
 
 def test_like_all_of(filter_request_builder):

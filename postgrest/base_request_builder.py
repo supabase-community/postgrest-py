@@ -35,7 +35,13 @@ except ImportError:
     from pydantic import validator as field_validator
 
 from .types import CountMethod, Filters, RequestMethod, ReturnMethod
-from .utils import AsyncClient, SyncClient, get_origin_and_cast, sanitize_param
+from .utils import (
+    AsyncClient,
+    SyncClient,
+    get_origin_and_cast,
+    sanitize_param,
+    sanitize_pattern_param,
+)
 
 
 class QueryArgs(NamedTuple):
@@ -341,6 +347,7 @@ class BaseFilterRequestBuilder(Generic[_ReturnT]):
             column: The name of the column to apply a filter on
             pattern: The pattern to filter by
         """
+        pattern = sanitize_pattern_param(pattern)
         return self.filter(column, Filters.LIKE, pattern)
 
     def like_all_of(self: Self, column: str, pattern: str) -> Self:
@@ -390,6 +397,7 @@ class BaseFilterRequestBuilder(Generic[_ReturnT]):
             column: The name of the column to apply a filter on
             pattern: The pattern to filter by
         """
+        pattern = sanitize_pattern_param(pattern)
         return self.filter(column, Filters.ILIKE, pattern)
 
     def or_(self: Self, filters: str, reference_table: Union[str, None] = None) -> Self:
