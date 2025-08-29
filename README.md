@@ -1,3 +1,6 @@
+> [!WARNING]
+> This repository has been moved to the [supabase-py monorepo](https://github.com/supabase/supabase-py/tree/main/src/postgrest). 
+
 # postgrest-py
 
 [PostgREST](https://postgrest.org) client for Python. This library provides an "ORM-like" interface to PostgREST.
